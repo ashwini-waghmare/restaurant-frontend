@@ -8,6 +8,7 @@ import Menu from "./components/menu";
 import Footer from "./components/footer";
 import Welcome from "./pages/welcome";
 import Forget from "./pages/forgetpass";
+import Menupage from "./pages/menupage";
 
 function App() {
   // useEffect(() => {
@@ -46,8 +47,8 @@ function App() {
         <Route path="/login" element={<Login/>} />
         <Route path="/welcome" element={<Welcome/>} />
         <Route path="/forgetpass" element={<Forget />} />
-
-
+        <Route path="/menupage" element={<Menupage/>} />
+        
       </Routes>
 
 
