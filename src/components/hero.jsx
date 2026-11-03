@@ -3,8 +3,6 @@ import { useNavigate } from "react-router-dom";
 function Hero() {
   const navigate = useNavigate();
 
-
-
   return (
     <section className="hero relative bg-[url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4')] bg-cover bg-center bg-no-repeat min-h-screen mt-2">
       <div className="absolute inset-0 bg-black/60"></div>

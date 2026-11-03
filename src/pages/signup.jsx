@@ -21,7 +21,7 @@ function Signup() {
         </h2>
 
         <form onSubmit={handlesubmit}>
-          <label type="text">Enter Name:</label>
+          <label type="text">Full Name:</label>
           <input
             type="text"
             placeholder="Enter Name"
@@ -29,7 +29,15 @@ function Signup() {
             className="w-full border border-gray-300 rounded-lg p-3 mt-2 mb-4 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 "
           />
 
-          <label type="text">Enter Password:</label>
+          <label type="text">Email:</label>
+          <input
+            type="email"
+            placeholder="Enter Email"
+            required
+            className="w-full border border-gray-300 rounded-lg p-3 mt-2 mb-4 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 "
+          />
+
+          <label type="text">Password:</label>
           <input
             type="password"
             placeholder="Enter Password"
@@ -37,22 +45,6 @@ function Signup() {
             className="w-full border border-gray-300 rounded-lg p-3 mt-2 mb-4 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 "
           />
 
-          <label type="text">Enter Mobile No::</label>
-          <input
-            type="number"
-            placeholder="Enter Mobile No"
-            required
-            className="w-full border border-gray-300 rounded-lg p-3 mt-2 mb-4 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 "
-          />
-
-
-          <label type="text">Enter Email:</label>
-          <input
-            type="email"
-            placeholder="Enter Email"
-            required
-            className="w-full border border-gray-300 rounded-lg p-3 mt-2 mb-4 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 "
-          />
 
           {/* <label type="password">Password:</label>
           <input
