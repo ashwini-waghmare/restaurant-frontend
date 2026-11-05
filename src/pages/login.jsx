@@ -1,10 +1,44 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function Login() {
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const  [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    try{
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/login`,
+        {
+          method: "POST",
+
+          headers: {
+            "content-type": "application/json",
+          },
+          
+          body: JSON.stringify({
+            username,
+            password,
+          })
+        }
+      );
+
+      const data = await response.json();
+
+      if (response.ok){
+        alert(data.message);
+        navigate("/welcome");
+      }else{
+        alert(data.message);
+      }
+    }catch (error) {
+      console.error("login error", error);
+      alert("Something went wrong. Please try again later.");
+    }
     navigate("/welcome");
   };
 
@@ -27,6 +61,8 @@ function Login() {
               type="text"
               placeholder="Enter Username"
               required
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               className="w-full border border-gray-300 rounded-lg p-3 mt-2 mb-4 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
             />
           </div>
@@ -37,6 +73,8 @@ function Login() {
               type="password"
               placeholder="Enter Password"
               required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className="w-full border border-gray-300 rounded-lg p-3 mt-2 mb-4 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
             />
           </div>
@@ -50,7 +88,7 @@ function Login() {
             </button>
           </div>
 
-          <div className="items-center text-center">
+          <div className="items-center text-center mt-3.5">
             <button
               onClick={foregetpass}
               className="font-bold text-l hover:underline text-blue-600"

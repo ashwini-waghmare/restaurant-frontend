@@ -1,11 +1,46 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function Signup() {
   const navigate = useNavigate();
 
-  const handlesubmit = (e) => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handlesubmit = async (e) => {
     e.preventDefault();
-    navigate("/welcome");
+
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/signup`,
+        {
+          method: "POST",
+
+          headers: {
+            "content-type": "application/json",
+          },
+
+          body: JSON.stringify({
+            name,
+            email,
+            password,
+          }),
+        },
+      );
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert(data.message);
+        navigate("/welcome");
+      } else {
+        alert(data.message);
+      }
+    } catch (error) {
+      console.error("signup error", error);
+      alert("Something went wrong. please try again later");
+    }
   };
 
   const foregetpass = (e) => {
@@ -26,6 +61,8 @@ function Signup() {
             type="text"
             placeholder="Enter Name"
             required
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             className="w-full border border-gray-300 rounded-lg p-3 mt-2 mb-4 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 "
           />
 
@@ -34,13 +71,17 @@ function Signup() {
             type="email"
             placeholder="Enter Email"
             required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             className="w-full border border-gray-300 rounded-lg p-3 mt-2 mb-4 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 "
           />
 
           <label type="text">Password:</label>
           <input
-            type="password"
-            placeholder="Enter Password"
+            type="email"
+            placeholder="Enter Email"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             required
             className="w-full border border-gray-300 rounded-lg p-3 mt-2 mb-4 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 "
           />
@@ -63,7 +104,10 @@ function Signup() {
             </button>
 
             <div type="button" className="items-center text-center mt-2">
-              <button onClick={foregetpass} className="font-bold text-sm hover:underline text-blue-600">
+              <button
+                onClick={foregetpass}
+                className="font-bold text-sm hover:underline text-blue-600"
+              >
                 Forget Pass
               </button>
             </div>
